@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> generarVector(int n);
+float calcularPromedio(const vector<int> & vec);
+vector<int> generarVectorB(const vector<int> & vecA, float promedio);
+int contarMultiplos2y3(const vector<int> & vec);
+int calcularSuma(const vector<int> & vec);
+vector<int> generarVectorC(const vector<int> & vecA);
+
+int main() {
+    int N;
+    cout << "Ingrese la longitud del vector (N): ";
+    cin >> N;
+
+    vector<int> vectorA = generarVector(N);
+    float promedioA = calcularPromedio(vectorA);
+    vector<int> vectorB = generarVectorB(vectorA, promedioA);
+    int multiplos2y3 = contarMultiplos2y3(vectorA);
+    int sumaA = calcularSuma(vectorA);
+    vector<int> vectorC = generarVectorC(vectorA);
+
+    cout << "Vector A: ";
+    for (int num : vectorA) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    cout << "Promedio de A: " << promedioA << endl;
+
+    cout << "Vector B: ";
+    for (int num : vectorB) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    cout << "Cantidad de elementos múltiplos de 2 y 3 en A: " << multiplos2y3 << endl;
+    cout << "Suma de elementos de A: " << sumaA << endl;
+
+    cout << "Vector C: ";
+    for (int num : vectorC) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+vector<int> generarVector(int n) {
+    vector<int> vec;
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        vec.push_back(rand() % 32000);
+    }
+    return vec;
+}
+
+float calcularPromedio(const vector<int> & vec) {
+    int sum = 0;
+    for (int num : vec) {
+        sum += num;
+    }
+    float promedio = sum / float(vec.size());
+    return promedio;
+}
+
+  
+vector<int> generarVectorB(const vector<int> & vecA, float promedio) {
+    vector<int> vecB;
+    for (int num : vecA) {
+        if (num > promedio) {
+            vecB.push_back(num);
+        }
+    }
+    return vecB;
+}
+
+int contarMultiplos2y3(const vector<int> & vec) {
+    int count = 0;
+    for (int num : vec) {
+        if (num % 2 == 0 && num % 3 == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int calcularSuma(const vector<int> & vec) {
+    int sum = 0;
+    for (int num : vec) {
+        sum += num;
+    }
+    return sum;
+}
+
+vector<int> generarVectorC(const vector<int> & vecA) {
+    vector<int> vecC = vecA;
+    for (int &num : vecC) {
+        num *= 2;
+    }
+    return vecC;
+}
